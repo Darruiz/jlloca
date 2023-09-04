@@ -29,7 +29,7 @@
 </div>
 
 <div class="main">
-<form action="processar_cadastro_carro.php" method="post" class="car-form">
+<form action="evento/processar_cadastro_carro.php" method="post" class="car-form">
     <h2>Cadastro de Novo Carro</h2>
     <div class="form-group">
     <label for="marca">Marca do Veículo:</label>
@@ -62,7 +62,7 @@
     </div>
     <div class="form-group">
     <label for="valor">Valor de Mercado Aproximado:</label>
-    <input type="text" name="valor" id="valor" oninput="formatCurrency(this)" pattern="[0-9]+([\.,][0-9]+)?" title="Digite um valor numérico" required>
+    <input type="text" name="valor" id="valor" oninput="formatCurrency(this)" required>
     </div>
     <div class="form-group">
         <label for="cor">Cor:</label>
