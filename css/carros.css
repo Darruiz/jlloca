@@ -51,6 +51,90 @@ body, html {
     color: #00cc66; 
 }
 
+.car-details {
+    background-color: #222; 
+    color: #fff;
+    border: 2px solid #00ff88;
+    border-radius: 5px;
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: scroll;
+    width: 300px;
+    margin: 20px;
+    position: fixed;
+    left: 20px; 
+    top: 20px;
+    margin-top: 8%; 
+} 
+
+.car-details h3 {
+    text-align: center;
+    color: #00ff88;
+    margin-bottom: 10px;
+}
+
+.car-list {
+    margin-top: 10px;
+}
+
+.car-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.car-item p {
+    margin: 5px 0;
+}
+
+
+.car-details-right {
+    background-color: #222;
+    color: #fff;
+    border: 2px solid #00ff88;
+    border-radius: 5px;
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: scroll;
+    width: 300px;
+    margin: 20px;
+    position: fixed;
+    right: 20px; 
+    top: 20px;
+    margin-top: 8%;
+    display: none;
+}
+
+.delete-button {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+
+.car-details-right h3 {
+    text-align: center;
+    color: #00ff88;
+    margin-bottom: 10px;
+}
+
+.close-button {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.close-button:hover {
+    background-color: #cc0000;
+}
+
 
 .container {
     position: relative;
