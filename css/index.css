@@ -65,6 +65,20 @@ body, html {
     background: linear-gradient(#00ff88, #2f2841);
 }
 
+.logout-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    text-decoration: none;
+    padding: 5px 10px;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
 .container {
     position: relative;
 }

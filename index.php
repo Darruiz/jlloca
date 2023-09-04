@@ -21,6 +21,7 @@
     <title>Menu JL</title>
 </head>
 <body> 
+<a href="logout.php" class="logout-button">Sair</a>
 
     <img src="imagens/fundoc1.png" alt="Imagem de fundo" id="background-image">
     <div class="main">
