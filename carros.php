@@ -32,20 +32,24 @@ $db = $database->conectar();
     <h3>Detalhes do Carro</h3>
     <div class="car-list">
     <?php
-    $query = "SELECT id, marca, modelo, ano, placa FROM carros"; 
-    $stmt = $db->prepare($query);
-    $stmt->execute();
-    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        echo "<div class='car-item' data-id='{$row['id']}'>"; // Defina o atributo 'data-id'
-        echo "<p>ID: {$row['id']}</p>";
-        echo "<p><strong>Marca:</strong> " . $row['marca'] . "</p>";
-        echo "<p><strong>Modelo:</strong> " . $row['modelo'] . "</p>";
-        echo "<p><strong>Ano:</strong> " . $row['ano'] . "</p>";
-        echo "<p><strong>Placa:</strong> " . $row['placa'] . "</p>";
-        echo "<button class='delete-button' data-id='{$row['id']}'>Excluir</button>"; // Adicione o data-id aqui
-        echo "</div>";
-    }
-    ?>
+$query = "SELECT id, marca, modelo, ano, placa FROM carros"; 
+$stmt = $db->prepare($query);
+$stmt->execute();
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    echo "<div class='car-item' data-id='{$row['id']}'>"; 
+    echo '<form action="evento/excluir_carro.php" method="POST">';
+    echo "<p>ID: {$row['id']}</p>";
+    echo "<p><strong>Marca:</strong> " . $row['marca'] . "</p>";
+    echo "<p><strong>Modelo:</strong> " . $row['modelo'] . "</p>";
+    echo "<p><strong>Ano:</strong> " . $row['ano'] . "</p>";
+    echo "<p><strong>Placa:</strong> " . $row['placa'] . "</p>";
+    echo "<input type='hidden' name='car_id' value='{$row['id']}'>";
+    echo "<button class='delete-button' data-id='{$row['id']}' type='submit'>Excluir</button>";
+    echo '</form>'; 
+    echo "</div>"; 
+}
+?>
+
 </div>
 
 </div>
@@ -53,7 +57,7 @@ $db = $database->conectar();
 <div class="car-details-right">
     <h3>Detalhes do Carro</h3>
     <div class="car-details-content">
-        <!-- Os detalhes do carro serão exibidos aqui -->
+      
         
     </div>
     <button class="close-button">Fechar</button>
@@ -65,6 +69,7 @@ $db = $database->conectar();
 <div class="container">
     <footer>&copy; Darruiz 2023</footer>
 </div>
+
 <script>
 var carDetails = document.querySelectorAll('.car-item');
 var carDetailsRight = document.querySelector('.car-details-right');
@@ -73,7 +78,7 @@ var closeButton = document.querySelector('.close-button');
 
 carDetails.forEach(function (carSquare) {
     carSquare.addEventListener('click', function () {
-        var carId = carSquare.getAttribute('data-id'); // Obtenha o ID do atributo 'data-id'
+        var carId = carSquare.getAttribute('data-id');
         carDetailsContent.textContent = 'ID do Carro: ' + carId;
         carDetailsRight.style.display = 'block';
     });
@@ -83,35 +88,9 @@ closeButton.addEventListener('click', function () {
     carDetailsRight.style.display = 'none';
 });
 
-var deleteButtons = document.querySelectorAll('.delete-button');
 
-deleteButtons.forEach(function (deleteButton) {
-    deleteButton.addEventListener('click', function () {
-        var carId = this.getAttribute('data-id'); // Obtenha o ID do carro a ser excluído
-        
-        if (confirm('Tem certeza de que deseja excluir este carro?')) {
-            fetch('evento/excluir_carro.php', {
-                method: 'POST',
-                body: JSON.stringify({ car_id: carId }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.message === 'Carro excluído com sucesso.') {
-                    alert('Carro excluído com sucesso.');
-                    // Você pode adicionar código aqui para atualizar a lista de carros ou tomar outras ações necessárias
-                } else {
-                    alert('Erro ao excluir o carro.');
-                }
-            })
-            .catch(error => {
-                console.error('Erro na solicitação AJAX:', error);
-            });
-        }
-    });
-});
+</script>
+
 </script>
 </body>
 </html>

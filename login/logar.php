@@ -25,11 +25,13 @@ if (isset($_POST['usuario']) && isset($_POST['password'])) {
         } else {
             $_SESSION['login_error'] = "Usuário e/ou senha incorretos";
             header("location: login.php");
+            print_r( $_SESSION['login_error']);
             exit();
         }
     } else {
         $_SESSION['login_error'] = "Preencha todos os campos!";
         header("location: login.php");
+        print_r( $_SESSION['login_error']);
         exit();
     }
 }
