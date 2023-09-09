@@ -29,27 +29,34 @@ $db = $database->conectar();
      Menu
 </a>
 <div class="car-details">
-    <h3>Detalhes do Carro</h3>
+    <h3>Detalhes dos Carros:</h3>
     <div class="car-list">
     <?php
-$query = "SELECT id, marca, modelo, ano, placa FROM carros"; 
-$stmt = $db->prepare($query);
-$stmt->execute();
-while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    echo "<div class='car-item' data-id='{$row['id']}'>"; 
-    echo '<form action="evento/excluir_carro.php" method="POST">';
-    echo "<p>ID: {$row['id']}</p>";
-    echo "<p><strong>Marca:</strong> " . $row['marca'] . "</p>";
-    echo "<p><strong>Modelo:</strong> " . $row['modelo'] . "</p>";
-    echo "<p><strong>Ano:</strong> " . $row['ano'] . "</p>";
-    echo "<p><strong>Placa:</strong> " . $row['placa'] . "</p>";
-    echo "<input type='hidden' name='car_id' value='{$row['id']}'>";
-    echo "<button class='delete-button' data-id='{$row['id']}' type='submit'>Excluir</button>";
-    echo '</form>'; 
-    echo "</div>"; 
-}
-?>
-
+        $query = "SELECT id, marca, modelo, ano, placa, valor, renavam, quilometragem FROM carros"; 
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $car_id = $row['id'];
+            echo "<div class='car-item' data-id='{$car_id}'>"; 
+            echo '<form action="evento/editar_carro.php" method="POST">';
+            echo "<input type='hidden' name='car_id' value='{$car_id}'>";
+            echo "<p>ID: {$car_id}</p>";
+            echo "<p><strong>Marca:</strong> <input type='text' name='marca' value='{$row['marca']}'></p>";
+            echo "<p><strong>Modelo:</strong> <input type='text' name='modelo' value='{$row['modelo']}'></p>";
+            echo "<p><strong>Ano:</strong> <input type='text' name='ano' value='{$row['ano']}'></p>";
+            echo "<p><strong>Placa:</strong> <input type='text' name='placa' value='{$row['placa']}'></p>";
+            echo "<p><strong>Valor:</strong> <input type='text' name='valor' value='{$row['valor']}'></p>";
+            echo "<p><strong>Renavam:</strong> <input type='text' name='renavam' value='{$row['renavam']}'></p>";
+            echo "<p><strong>Quilometragem:</strong> <input type='text' name='quilometragem' value='{$row['quilometragem']}'></p>";
+            echo "<button class='edit-save-button' type='submit'>Salvar</button>";
+            echo '</form>';
+            echo "<form action='evento/excluir_carro.php' method='POST'>";
+            echo "<input type='hidden' name='car_id' value='{$car_id}'>";
+            echo "<button class='delete-button' type='submit'>Excluir</button>";
+            echo '</form>';
+            echo "</div>"; 
+        }
+        ?>
 </div>
 
 </div>
@@ -71,26 +78,42 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 </div>
 
 <script>
-var carDetails = document.querySelectorAll('.car-item');
-var carDetailsRight = document.querySelector('.car-details-right');
-var carDetailsContent = document.querySelector('.car-details-content');
-var closeButton = document.querySelector('.close-button');
+    document.addEventListener("DOMContentLoaded", function () {
+        const editButtons = document.querySelectorAll(".edit-button");
+        const saveButtons = document.querySelectorAll(".save-button");
+        const valorInputs = document.querySelectorAll(".edit-valor");
+        const renavamInputs = document.querySelectorAll(".edit-renavam");
+        const quilometragemInputs = document.querySelectorAll(".edit-quilometragem");
 
-carDetails.forEach(function (carSquare) {
-    carSquare.addEventListener('click', function () {
-        var carId = carSquare.getAttribute('data-id');
-        carDetailsContent.textContent = 'ID do Carro: ' + carId;
-        carDetailsRight.style.display = 'block';
+        editButtons.forEach((button, index) => {
+            button.addEventListener("click", () => {
+            
+                button.style.display = "none";
+                saveButtons[index].style.display = "inline";
+
+           
+                valorInputs[index].readOnly = false;
+                renavamInputs[index].readOnly = false;
+                quilometragemInputs[index].readOnly = false;
+            });
+        });
+
+        saveButtons.forEach((button, index) => {
+            button.addEventListener("click", () => {
+                
+                button.style.display = "none";
+                editButtons[index].style.display = "inline";
+
+              
+                valorInputs[index].readOnly = true;
+                renavamInputs[index].readOnly = true;
+                quilometragemInputs[index].readOnly = true;
+
+                
+            });
+        });
     });
-});
-
-closeButton.addEventListener('click', function () {
-    carDetailsRight.style.display = 'none';
-});
-
-
 </script>
 
-</script>
 </body>
 </html>
