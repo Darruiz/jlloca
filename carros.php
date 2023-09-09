@@ -37,7 +37,7 @@ $db = $database->conectar();
         $stmt->execute();
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $car_id = $row['id'];
-            echo "<div class='car-item' data-id='{$car_id}'>"; 
+            echo "<div class='car-item' data-id='{$car_id}'>";
             echo '<form action="evento/editar_carro.php" method="POST">';
             echo "<input type='hidden' name='car_id' value='{$car_id}'>";
             echo "<p>ID: {$car_id}</p>";
@@ -48,13 +48,14 @@ $db = $database->conectar();
             echo "<p><strong>Valor:</strong> <input type='text' name='valor' value='{$row['valor']}'></p>";
             echo "<p><strong>Renavam:</strong> <input type='text' name='renavam' value='{$row['renavam']}'></p>";
             echo "<p><strong>Quilometragem:</strong> <input type='text' name='quilometragem' value='{$row['quilometragem']}'></p>";
-            echo "<button class='edit-save-button' type='submit'>Salvar</button>";
+            echo '<button class="edit-save-button" type="submit">Salvar</button>';
             echo '</form>';
-            echo "<form action='evento/excluir_carro.php' method='POST'>";
+            echo '<form action="evento/excluir_carro.php" method="POST">';
             echo "<input type='hidden' name='car_id' value='{$car_id}'>";
-            echo "<button class='delete-button' type='submit'>Excluir</button>";
+            echo '<button class="delete-button" type="submit">Excluir</button>';
             echo '</form>';
-            echo "</div>"; 
+            echo "</div>";
+            
         }
         ?>
 </div>
