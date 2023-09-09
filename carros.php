@@ -41,13 +41,34 @@ $db = $database->conectar();
             echo '<form action="evento/editar_carro.php" method="POST">';
             echo "<input type='hidden' name='car_id' value='{$car_id}'>";
             echo "<p>ID: {$car_id}</p>";
-            echo "<p><strong>Marca:</strong> <input type='text' name='marca' value='{$row['marca']}'></p>";
-            echo "<p><strong>Modelo:</strong> <input type='text' name='modelo' value='{$row['modelo']}'></p>";
-            echo "<p><strong>Ano:</strong> <input type='text' name='ano' value='{$row['ano']}'></p>";
-            echo "<p><strong>Placa:</strong> <input type='text' name='placa' value='{$row['placa']}'></p>";
-            echo "<p><strong>Valor:</strong> <input type='text' name='valor' value='{$row['valor']}'></p>";
-            echo "<p><strong>Renavam:</strong> <input type='text' name='renavam' value='{$row['renavam']}'></p>";
-            echo "<p><strong>Quilometragem:</strong> <input type='text' name='quilometragem' value='{$row['quilometragem']}'></p>";
+            echo "<div class='input-field'>";
+            echo "<label for='marca'>Marca:</label>";
+            echo "<input type='text' name='marca' id='marca' class='styled-input' value='{$row['marca']}'>";
+            echo "</div>";
+            echo "<div class='input-field'>";
+            echo "<label for='modelo'>Modelo:</label>";
+            echo "<input type='text' name='modelo' id='modelo' class='styled-input' value='{$row['modelo']}'>";
+            echo "</div>";
+            echo "<div class='input-field'>";
+            echo "<label for='ano'>Ano:</label>";
+            echo "<input type='text' name='ano' id='ano' class='styled-input' value='{$row['ano']}'>";
+            echo "</div>";
+            echo "<div class='input-field'>";
+            echo "<label for='placa'>Placa:</label>";
+            echo "<input type='text' name='placa' id='placa' class='styled-input' value='{$row['placa']}'>";
+            echo "</div>";
+            echo "<div class='input-field'>";
+            echo "<label for='valor'>Valor:</label>";
+            echo "<input type='text' name='valor' id='valor' class='styled-input' value='{$row['valor']}'>";
+            echo "</div>";
+            echo "<div class='input-field'>";
+            echo "<label for='renavam'>Renavam:</label>";
+            echo "<input type='text' name='renavam' id='renavam' class='styled-input' value='{$row['renavam']}'>";
+            echo "</div>";
+            echo "<div class='input-field'>";
+            echo "<label for='quilometragem'>Quilometragem:</label>";
+            echo "<input type='text' name='quilometragem' id='quilometragem' class='styled-input' value='{$row['quilometragem']}'>";
+            echo "</div>";
             echo '<button class="edit-save-button" type="submit">Salvar</button>';
             echo '</form>';
             echo '<form action="evento/excluir_carro.php" method="POST">';
@@ -55,8 +76,8 @@ $db = $database->conectar();
             echo '<button class="delete-button" type="submit">Excluir</button>';
             echo '</form>';
             echo "</div>";
-            
         }
+        
         ?>
 </div>
 

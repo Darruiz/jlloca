@@ -94,23 +94,6 @@ body, html {
     margin-right: 2%;
 }
 
-.input-label {
-    font-weight: bold;
-    color: #00ff88;
-    display: block;
-    margin-bottom: 5px;
-}
-
-.input-field {
-    width: 100%;
-    color: #ffffff;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    font-size: 16px;
-    background-color:#2f2841;
-}
 .car-details h3 {
     text-align: center;
     color: #00ff88;
@@ -163,6 +146,54 @@ body, html {
 }
 
 
+.input-label {
+    font-weight: bold;
+    color: #00ff88;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-field {
+    width: 100%;
+    color: #ffffff;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    background-color:#2f2841;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.checkbox-group input[type="checkbox"] {
+    display: none; 
+}
+
+.checkbox-group label {
+    margin-right: 10px;
+    padding: 5px 10px;
+    background-color: #514869;
+    color: #f0ffffde;
+    border: 1px solid #00ff88;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.checkbox-group label:hover {
+    background-color: #00cc66; /
+}
+
+
+.checkbox-group input[type="checkbox"]:checked + label {
+    background-color: #00ff88;
+    color: #2b134b;
+    border: 1px solid #2b134b;
+}
 .container {
     position: relative;
 }

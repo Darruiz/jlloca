@@ -35,7 +35,7 @@
                 </a>
             </div>
             <div class="square">
-                <a href="pagina2.html">
+                <a href="cliente.php">
                     <div class="square-content">
                         <img src="imagens/pessoa.png" alt="Ícone 2">
                         <h2>Clientes</h2>
@@ -43,10 +43,10 @@
                 </a>
             </div>
             <div class="square">
-                <a href="pagina3.html">
+                <a href="aluguel.php">
                     <div class="square-content">
-                        <img src="icone3.png" alt="Ícone 3">
-                        <h2>Título 3</h2>
+                        <img src="imagens/rentjl.png" alt="Ícone 3">
+                        <h2>Aluguéis</h2>
                     </div>
                 </a>
             </div>
