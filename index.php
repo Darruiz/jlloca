@@ -48,6 +48,7 @@
                         <img src="imagens/rentjl.png" alt="Ícone 3">
                         <h2>Aluguéis</h2>
                     </div>
+                    
                 </a>
             </div>
         </div>
