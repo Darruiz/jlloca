@@ -43,7 +43,7 @@
                 </a>
             </div>
             <div class="square">
-                <a href="aluguel.php">
+                <a href="alugueis.php">
                     <div class="square-content">
                         <img src="imagens/rentjl.png" alt="Ícone 3">
                         <h2>Aluguéis</h2>

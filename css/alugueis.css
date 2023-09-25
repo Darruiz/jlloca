@@ -1,0 +1,178 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: sans-serif;
+    overflow: hidden;
+} 
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: #2f2841;
+    min-height: 100vh; 
+}
+
+
+.add-car-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #00ff88;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    z-index: 9999;
+}
+
+.add-car-button:hover {
+    background-color: #00cc66; 
+}
+
+.menu-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    color: #00ff88;
+    text-decoration: none;
+    font-weight: bold;
+    z-index: 9999;
+}
+
+.menu-button i {
+    margin-right: 5px;
+}
+
+.menu-button:hover {
+    color: #00cc66; 
+}
+
+.car-details {
+    background-color: #222; 
+    color: #fff;
+    border: 2px solid #00ff88;
+    border-radius: 5px;
+    padding: 20px;
+    max-height: 80vh; 
+    overflow-y: scroll; 
+    width: 80%; 
+    height: 70%;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+}
+
+.car-list {
+    margin-top: 10px;
+}
+.car-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    position: relative; 
+}
+
+.delete-button {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    right: 0; 
+    margin-bottom: 1%; 
+    margin-right: 2%;
+}
+
+.input-label {
+    font-weight: bold;
+    color: #00ff88;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-field {
+    width: 100%;
+    color: #ffffff;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    background-color:#2f2841;
+}
+.car-details h3 {
+    text-align: center;
+    color: #00ff88;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+.car-item p {
+    margin: 5px 0;
+}
+
+
+.car-details-right {
+    background-color: #222;
+    color: #fff;
+    border: 2px solid #00ff88;
+    border-radius: 5px;
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: scroll;
+    width: 300px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+.car-details-right h3 {
+    text-align: center;
+    color: #00ff88;
+    margin-bottom: 10px;
+}
+
+.close-button {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.close-button:hover {
+    background-color: #cc0000;
+}
+
+
+.container {
+    position: relative;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    padding: 10px; 
+    font-size: 14px;
+    color: #00ff88;
+}
