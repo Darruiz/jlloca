@@ -31,18 +31,20 @@ $db = $database->conectar();
 <div class="car-details"> 
 <h3>Alugueis:</h3>
     <div class= "car-list">
-        <?php 
-        $query = "SELECT id, carro_alugado_id, valor_mensal_aluguel, data_inicial, valor_caucao FROM alugueis";
-        $stmt = $db->prepare($query); 
-        $stmt->execute(); 
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { 
-            $aluguel_id = $row['id']; 
-            echo "<div class='car-item' data-id='{$aluguel_id}>'";
-            echo "<form action='#' method = 'POST'> "; 
-            echo "<input type='hidden' name = 'carro_alugado_id' value='{carro_alugado_id}'>";
-            echo "<p>ID: {$carro_alugado_id<\p>";
-        }
-        ?> 
+    <?php
+$query = "SELECT id, carro_alugado_id, valor_mensal_aluguel, data_inicial, valor_caucao FROM alugueis";
+$stmt = $db->prepare($query);
+$stmt->execute();
+while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $aluguel_id = $row['id'];
+    echo "<div class='car-item' data-id='{$aluguel_id}'>";
+    echo "<form action='#' method='POST'>";
+    echo "<input type='hidden' name='carro_alugado_id' value='{$row['carro_alugado_id']}'>";
+    echo "<p>ID: {$row['carro_alugado_id']}</p>";
+    echo "</form>";
+    echo "</div>";
+}
+?>
 
     </div>
 </div>
