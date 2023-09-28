@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 04/09/2023 às 03:03
+-- Tempo de geração: 28/09/2023 às 13:55
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -52,6 +52,55 @@ INSERT INTO `carros` (`id`, `marca`, `modelo`, `placa`, `renavam`, `ano`, `valor
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `clientes`
+--
+
+CREATE TABLE `clientes` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `rg` varchar(20) NOT NULL,
+  `cnh` varchar(20) NOT NULL,
+  `tipo_cnh` varchar(10) NOT NULL,
+  `telefone` varchar(20) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `endereco` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `clientes`
+--
+
+INSERT INTO `clientes` (`id`, `nome`, `rg`, `cnh`, `tipo_cnh`, `telefone`, `email`, `endereco`) VALUES
+(2, 'João Darruiz ', '4875552651', '365459541335', 'A,B', '14991877240', 'darruizhomeoffice@gmail.com', 'av cruer adad ');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `locacoes`
+--
+
+CREATE TABLE `locacoes` (
+  `id` int(11) NOT NULL,
+  `carro_id` int(11) NOT NULL,
+  `cliente_id` int(11) NOT NULL,
+  `valor_mensal` decimal(10,2) NOT NULL,
+  `data_inicial` date NOT NULL,
+  `valor_caucao` decimal(10,2) NOT NULL,
+  `data_locacao` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `locacoes`
+--
+
+INSERT INTO `locacoes` (`id`, `carro_id`, `cliente_id`, `valor_mensal`, `data_inicial`, `valor_caucao`, `data_locacao`) VALUES
+(1, 9, 2, 2000.00, '2023-08-31', 2000.00, '2023-09-28 11:41:43'),
+(2, 9, 2, 2000.00, '2023-08-31', 2000.00, '2023-09-28 11:43:51'),
+(3, 9, 2, 2050.00, '2023-08-31', 2000.00, '2023-09-28 11:44:07');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `usuarios`
 --
 
@@ -68,7 +117,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nome`, `senha`, `data_aniversario`, `email`) VALUES
-(1, 'Master', '7c4a8d09ca3762af61e59520943dc26494f8941b', '2005-12-05', 'darruizhomeoffice@gmail.com');
+(1, 'Master', '2acfc192f7f74e84214ff5ddcbce2bdaaa73c3a0', '2005-12-05', 'darruizhomeoffice@gmail.com');
 
 --
 -- Índices para tabelas despejadas
@@ -79,6 +128,20 @@ INSERT INTO `usuarios` (`id`, `nome`, `senha`, `data_aniversario`, `email`) VALU
 --
 ALTER TABLE `carros`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `clientes`
+--
+ALTER TABLE `clientes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `locacoes`
+--
+ALTER TABLE `locacoes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `carro_id` (`carro_id`),
+  ADD KEY `cliente_id` (`cliente_id`);
 
 --
 -- Índices de tabela `usuarios`
@@ -97,10 +160,33 @@ ALTER TABLE `carros`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT de tabela `clientes`
+--
+ALTER TABLE `clientes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `locacoes`
+--
+ALTER TABLE `locacoes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Restrições para tabelas despejadas
+--
+
+--
+-- Restrições para tabelas `locacoes`
+--
+ALTER TABLE `locacoes`
+  ADD CONSTRAINT `locacoes_ibfk_1` FOREIGN KEY (`carro_id`) REFERENCES `carros` (`id`),
+  ADD CONSTRAINT `locacoes_ibfk_2` FOREIGN KEY (`cliente_id`) REFERENCES `clientes` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
