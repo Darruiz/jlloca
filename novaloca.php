@@ -37,18 +37,18 @@ $resultClientes = $db->query($queryClientes);
 
 <div class="main">
 <?php
-// Consulta para obter as placas dos carros
+
 $queryCarros = "SELECT id, placa FROM carros"; 
 $stmtCarros = $db->prepare($queryCarros);
 $stmtCarros->execute();  
 
-// Consulta para obter os nomes dos clientes
+
 $queryClientes = "SELECT id, nome FROM clientes"; 
 $stmtClientes = $db->prepare($queryClientes);
 $stmtClientes->execute();
 ?>
 
-<form action='' method='post'>
+<form action='evento/processar_cadastro_aluguel.php' method='post'>
     <div class='form-group'>
         <label for='carro'>Placa:</label>
         <select name='carro' id='carro' required>
