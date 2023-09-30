@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindParam(':quilometragem', $quilometragem);
 
     if ($stmt->execute()) {
-        header('Location: /jlloca/alugueis.php');
+        header('Location: /jlloca/carros.php');
         exit();
     } else {
         echo "Erro ao cadastrar o carro.";
