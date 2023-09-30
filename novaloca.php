@@ -42,12 +42,11 @@ $queryCarros = "SELECT id, placa FROM carros";
 $stmtCarros = $db->prepare($queryCarros);
 $stmtCarros->execute();  
 
-
 $queryClientes = "SELECT id, nome FROM clientes"; 
 $stmtClientes = $db->prepare($queryClientes);
 $stmtClientes->execute();
-?>
 
+?>
 <form action='evento/processar_cadastro_aluguel.php' method='post'>
     <div class='form-group'>
         <label for='carro'>Placa:</label>

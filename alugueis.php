@@ -39,15 +39,27 @@ $db = $database->conectar();
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $aluguel_id = $row['id'];
         echo "<div class='car-item' data-id='{$aluguel_id}'>";
-        echo "<form action='#' method='POST'>";
-        echo "<input type='hidden' name='carro_id' value='{$row['carro_id']}'>";
+        echo "<form action='evento/editar_aluguel.php' method='POST'>";
+        echo "<input type='hidden' name='aluguel_id' value='{$aluguel_id}'>";
         echo "<p>ID: {$aluguel_id}</p>";
-        echo "<p>Valor Mensal: <input class='edit-valor' type='text' name='valor_mensal' value='{$row['valor_mensal']}' readonly></p>";
-        echo "<p>Data Inicial: {$row['data_inicial']}</p>";
-        echo "<p>Valor Caução: {$row['valor_caucao']}</p>";
-        echo "<button class='edit-button'>Editar</button>";
-        echo "<button class='save-button' style='display:none;'>Salvar</button>";
-        echo "</form>";
+        echo "<div class='input-field'>";
+        echo "<label for='valor_mensal'>Valor Mensal:</label>";
+        echo "<input type='text' name='valor_mensal' id='valor_mensal' class='styled-input' value='{$row['valor_mensal']}'>";
+        echo "</div>";
+        echo "<div class='input-field'>";
+        echo "<label for='data_inicial'>Data Inicial:</label>";
+        echo "<input type='text' name='data_inicial' id='data_inicial' class='styled-input' value='{$row['data_inicial']}'>";
+        echo "</div>";
+        echo "<div class='input-field'>";
+        echo "<label for='valor_caucao'>Valor Caução:</label>";
+        echo "<input type='text' name='valor_caucao' id='valor_caucao' class='styled-input' value='{$row['valor_caucao']}'>";
+        echo "</div>";
+        echo '<button class="edit-save-button" type="submit">Salvar</button>';
+        echo '</form>';
+        echo '<form action="evento/excluir_aluguel.php" method="POST">';
+        echo "<input type='hidden' name='aluguel_id' value='{$aluguel_id}'>";
+        echo '<button class="delete-button" type="submit">Excluir</button>';
+        echo '</form>';
         echo "</div>";
     }
     ?>
@@ -78,8 +90,6 @@ $db = $database->conectar();
                 button.style.display = "none";
                 editButtons[index].style.display = "inline";
                 valorInputs[index].readOnly = true;
-                
-               
             });
         });
     });
