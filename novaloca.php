@@ -38,7 +38,7 @@ $resultClientes = $db->query($queryClientes);
 <div class="main">
 <?php
 
-$queryCarros = "SELECT id, placa FROM carros"; 
+$queryCarros = "SELECT id, placa, modelo FROM carros"; 
 $stmtCarros = $db->prepare($queryCarros);
 $stmtCarros->execute();  
 
@@ -53,7 +53,7 @@ $stmtClientes->execute();
         <select name='carro' id='carro' required>
             <?php
             while ($row = $stmtCarros->fetch(PDO::FETCH_ASSOC)) {
-                echo "<option value='{$row['placa']}'>{$row['placa']}</option>";
+                echo "<option value='{$row['placa']}'>{$row['placa']} {$row['modelo']} </option>";
             }
             ?>
         </select>

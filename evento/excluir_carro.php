@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['car_id'])) {
         $carId = $_POST['car_id'];
 
-     
+        
         if ($db) {
             $query = "DELETE FROM carros WHERE id = :carId";
             $stmt = $db->prepare($query);

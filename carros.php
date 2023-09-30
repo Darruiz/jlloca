@@ -4,7 +4,7 @@ session_start();
 if (!isset($_SESSION['id'])) {
     header('Location: login/login.php');
     exit(); 
-}
+}   
 
 require_once('evento/conexao.php');
 date_default_timezone_set('America/Sao_Paulo');

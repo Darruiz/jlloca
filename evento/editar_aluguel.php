@@ -20,19 +20,28 @@ if (isset($_POST['aluguel_id'])) {
         $data_inicial = $_POST['data_inicial'];
         $valor_caucao = $_POST['valor_caucao'];
 
-        $query = "UPDATE locacoes SET valor_mensal = :valor_mensal, data_inicial = :data_inicial, valor_caucao = :valor_caucao WHERE id = :aluguel_id";
-        $stmt = $db->prepare($query);
+        try {
+            $db->beginTransaction();
 
-        $stmt->bindParam(':valor_mensal', $valor_mensal);
-        $stmt->bindParam(':data_inicial', $data_inicial);
-        $stmt->bindParam(':valor_caucao', $valor_caucao);
-        $stmt->bindParam(':aluguel_id', $aluguel_id);
+            $query = "UPDATE locacoes SET valor_mensal = :valor_mensal, data_inicial = :data_inicial, valor_caucao = :valor_caucao WHERE id = :aluguel_id";
+            $stmt = $db->prepare($query);
 
-        if ($stmt->execute()) {
-            header("Location: /jlloca/alugueis.php");
-            exit();
-        } else {
-            echo "Erro ao atualizar os detalhes do aluguel.";
+            $stmt->bindParam(':valor_mensal', $valor_mensal);
+            $stmt->bindParam(':data_inicial', $data_inicial);
+            $stmt->bindParam(':valor_caucao', $valor_caucao);
+            $stmt->bindParam(':aluguel_id', $aluguel_id);
+
+            if ($stmt->execute()) {
+                $db->commit();
+                header("Location: /jlloca/alugueis.php");
+                exit();
+            } else {
+                $db->rollBack();
+                echo "Erro ao atualizar os detalhes do aluguel.";
+            }
+        } catch (PDOException $e) {
+            $db->rollBack();
+            echo "Erro: " . $e->getMessage();
         }
     }
 }

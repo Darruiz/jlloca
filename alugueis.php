@@ -33,31 +33,44 @@ $db = $database->conectar();
 <h3>Alugueis:</h3>
     <div class= "car-list">
     <?php   
-    $query = "SELECT id, carro_id, valor_mensal, data_inicial, valor_caucao FROM locacoes";
+    $query = "SELECT l.id, l.carro_id, l.valor_mensal, l.data_inicial, l.valor_caucao, c.modelo, c.placa, cl.nome AS cliente_nome 
+            FROM locacoes AS l
+            JOIN carros AS c ON l.carro_id = c.id
+            JOIN clientes AS cl ON l.cliente_id = cl.id";
     $stmt = $db->prepare($query);
     $stmt->execute();
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $aluguel_id = $row['id'];
         echo "<div class='car-item' data-id='{$aluguel_id}'>";
+        
+        echo "<p>ID do Aluguel: {$aluguel_id}</p>";
+      
         echo "<form action='evento/editar_aluguel.php' method='POST'>";
         echo "<input type='hidden' name='aluguel_id' value='{$aluguel_id}'>";
-        echo "<p>ID: {$aluguel_id}</p>";
+        echo "<div class='input-field'>";
+        echo "<label for='modelo_placa'>Modelo e Placa:</label>";
+        echo "<input type='text' name='modelo_placa' id='modelo_placa' class='styled-input' value='{$row['modelo']} {$row['placa']}' readonly>";
+        echo "</div>";
+        echo "<div class='input-field'>";
+        echo "<label for='cliente_nome'>Nome do Cliente:</label>";
+        echo "<input type='text' name='cliente_nome' id='cliente_nome' class='styled-input' value='{$row['cliente_nome']}' readonly>";
+        echo "</div>";
+    
         echo "<div class='input-field'>";
         echo "<label for='valor_mensal'>Valor Mensal:</label>";
-        echo "<input type='text' name='valor_mensal' id='valor_mensal' class='styled-input' value='{$row['valor_mensal']}'>";
+        echo "<input type='text' name='valor_mensal' id='valor_mensal' class='styled-input edit-valor' value='{$row['valor_mensal']}' >";
         echo "</div>";
         echo "<div class='input-field'>";
         echo "<label for='data_inicial'>Data Inicial:</label>";
-        echo "<input type='text' name='data_inicial' id='data_inicial' class='styled-input' value='{$row['data_inicial']}'>";
+        echo "<input type='text' name='data_inicial' id='data_inicial' class='styled-input' value='{$row['data_inicial']}' >";
         echo "</div>";
         echo "<div class='input-field'>";
         echo "<label for='valor_caucao'>Valor Caução:</label>";
-        echo "<input type='text' name='valor_caucao' id='valor_caucao' class='styled-input' value='{$row['valor_caucao']}'>";
+        echo "<input type='text' name='valor_caucao' id='valor_caucao' class='styled-input' value='{$row['valor_caucao']}' >";
         echo "</div>";
-        echo '<button class="edit-save-button" type="submit">Salvar</button>';
-        echo '</form>';
-        echo '<form action="evento/excluir_aluguel.php" method="POST">';
-        echo "<input type='hidden' name='aluguel_id' value='{$aluguel_id}'>";
+        echo '<button class="edit-button">Editar</button>';
+        echo '<button class="save-button" style="display:none;">Salvar</button>';
+        // Adicione o botão de envio dentro do formulário
         echo '<button class="delete-button" type="submit">Excluir</button>';
         echo '</form>';
         echo "</div>";
@@ -66,7 +79,7 @@ $db = $database->conectar();
     </div>
 </div>
 </div>
-  
+
 <div class="container">
     <footer>&copy; Darruiz 2023</footer>
 </div>
@@ -75,13 +88,13 @@ $db = $database->conectar();
     document.addEventListener("DOMContentLoaded", function () {
         const editButtons = document.querySelectorAll(".edit-button");
         const saveButtons = document.querySelectorAll(".save-button");
-        const valorInputs = document.querySelectorAll(".edit-valor");
-        
+        const inputsToEdit = document.querySelectorAll(".styled-input.edit-valor");
+
         editButtons.forEach((button, index) => {
             button.addEventListener("click", () => {
                 button.style.display = "none";
                 saveButtons[index].style.display = "inline";
-                valorInputs[index].readOnly = false;
+                inputsToEdit[index].readOnly = false;
             });
         });
 
@@ -89,7 +102,7 @@ $db = $database->conectar();
             button.addEventListener("click", () => {
                 button.style.display = "none";
                 editButtons[index].style.display = "inline";
-                valorInputs[index].readOnly = true;
+                inputsToEdit[index].readOnly = true;
             });
         });
     });
