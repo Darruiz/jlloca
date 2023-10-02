@@ -13,6 +13,7 @@ $database = new Database();
 $db = $database->conectar();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
     $marca = $_POST['marca'];
     $modelo = $_POST['modelo'];
     $placa = $_POST['placa'];

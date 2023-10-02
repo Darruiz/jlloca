@@ -71,8 +71,6 @@ $db = $database->conectar();
         echo '<button class="edit-button">Editar</button>';
         echo '<button class="save-button" style="display:none;">Salvar</button>';
         echo '</form>';
-        
-        // Botão de exclusão dentro do mesmo "div" do formulário
         echo '<form action="evento/excluir_aluguel.php" method="POST">';
         echo "<input type='hidden' name='aluguel_id' value='{$aluguel_id}'>";
         echo '<button class="delete-button" type="submit">Excluir</button>';

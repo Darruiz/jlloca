@@ -54,10 +54,10 @@
         </div>
         <div class="square-row">
             <div class="square">
-                <a href="pagina4.html">
+                <a href="dash.php">
                     <div class="square-content">
-                        <img src="icone4.png" alt="Ícone 4">
-                        <h2>Título 4</h2>
+                        <img src="imagens/dash.png" alt="Ícone 4">
+                        <h2>Dashboard</h2>
                     </div>
                 </a>
             </div>

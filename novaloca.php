@@ -40,6 +40,7 @@ $resultClientes = $db->query($queryClientes);
 
 $queryCarros = "SELECT id, placa, modelo FROM carros"; 
 $stmtCarros = $db->prepare($queryCarros);
+
 $stmtCarros->execute();  
 
 $queryClientes = "SELECT id, nome FROM clientes"; 
