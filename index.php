@@ -52,6 +52,7 @@
                 </a>
             </div>
         </div>
+        
         <div class="square-row">
             <div class="square">
                 <a href="dash.php">
@@ -61,6 +62,7 @@
                     </div>
                 </a>
             </div>
+            
             <div class="square">
                 <a href="pagina5.html">
                     <div class="square-content">
