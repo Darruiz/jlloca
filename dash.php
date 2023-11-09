@@ -40,7 +40,7 @@ $db = $database->conectar();
         <div class="main-text-grey">
                     <h1 class="text-v">Caixa:</h1>
                 </div>
-
+                
 
         </div>
 
@@ -76,11 +76,31 @@ try {
             <div class="main-text-grey">
                     <h1 class="text-r">Saída:</h1>
                 </div>
+                <?php
+require_once('evento/conexao.php');
+$database = new Database();
+$db = $database->conectar();
+
+$query = "SELECT SUM(valor_saida) AS total_saida FROM saida";
+$stmt = $db->prepare($query);
+
+try {
+    if ($stmt->execute()) {
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $totalEntradas = $result['total_saida'];
+            echo "<h1 class='text-r mmm'>R$ " . number_format($totalEntradas, 2, ',', '.') . "</h1>";   
+ } else {
+        echo 'Erro ao buscar o valor total das saida.';
+    }
+} catch (PDOException $e) {
+    echo 'Erro no banco de dados: ' . $e->getMessage();
+}
+?>
             </div>
 
             <div class="large-c-2">
             <div class="main-text-grey">
-                    <h1 class="text-lu">Lucro:</h1>
+                    <h1 class="text-lu">Lucro Bruto:</h1>
                 </div>
             </div>
 
@@ -96,7 +116,7 @@ try {
 
         <div class="but-l">
         <a href="evento/adicionar_entrada.php" class="but-v">Adicionar Entradas</a>
-        <a href="#" class="but-red">Adicionar Saidas</a>
+        <a href="evento/adicionar_saida.php" class="but-red">Adicionar Saidas</a>
 
         </div>
 
