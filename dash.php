@@ -32,74 +32,104 @@ $db = $database->conectar();
         </a>
 
         <div class="main-grey">
-                <div class="main-text-grey">
-                    <h1 class="text-v">Patrimônio em Veículos:</h1>
-                </div>
+            <div class="main-text-grey">
+                <h1 class="text-v">Patrimônio em Veículos:</h1>
+            </div>
+            <?php
+    require_once('evento/conexao.php');
+    $database = new Database();
+    $db = $database->conectar();
+
+    $query = "SELECT SUM(valor) AS total_valor FROM carros";
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    $total_mercado = $stmt->fetch(PDO::FETCH_ASSOC)['total_valor'];
+
+    echo "<h1 class='text-v'>R$ " . number_format($total_mercado, 2, ',', '.') . "</h1>";
+    ?>
         </div>
         <div class="main-grey2">
-        <div class="main-text-grey">
-                    <h1 class="text-v">Caixa:</h1>
-                </div>
-                
+            <div class="main-text-grey">
+                <h1 class="text-v">Caixa:</h1>
+            </div>
+<?php
+    require_once('evento/conexao.php');
+    $database = new Database();
+    $db = $database->conectar();
+
+    $query = "SELECT SUM(valor_saida) AS total_saida FROM saida";
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    $total_saidas = $stmt->fetch(PDO::FETCH_ASSOC)['total_saida'];
+
+    $query = "SELECT SUM(valor_entrada) AS total_entradas FROM entrada";
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    $total_entradas = $stmt->fetch(PDO::FETCH_ASSOC)['total_entradas'];
+
+    $caixaTotal = $total_entradas + $total_saidas; 
+
+    echo "<h1 class='text-v mmmm'>R$ " . number_format($caixaTotal, 2, ',', '.') . "</h1>";
+    ?>
 
         </div>
 
         <div class="large">
 
             <div class="large-c-1">
-            <div class="main-text-grey">
+                <div class="main-text-grey">
                     <h1 class="text-v">Entrada:</h1>
                 </div>
-             <?php
-require_once('evento/conexao.php');
-$database = new Database();
-$db = $database->conectar();
+                <?php
+                require_once('evento/conexao.php');
+                $database = new Database();
+                $db = $database->conectar();
 
-$query = "SELECT SUM(valor_entrada) AS total_entradas FROM entrada";
-$stmt = $db->prepare($query);
+                $query = "SELECT SUM(valor_entrada) AS total_entradas FROM entrada";
+                $stmt = $db->prepare($query);
 
-try {
-    if ($stmt->execute()) {
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $totalEntradas = $result['total_entradas'];
-            echo "<h1 class='text-v mmm'>R$ " . number_format($totalEntradas, 2, ',', '.') . "</h1>";   
- } else {
-        echo 'Erro ao buscar o valor total das entradas.';
-    }
-} catch (PDOException $e) {
-    echo 'Erro no banco de dados: ' . $e->getMessage();
-}
-?>
+                try {
+                    if ($stmt->execute()) {
+                        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                        $totalEntradas = $result['total_entradas'];
+                        echo "<h1 class='text-v mmm'>R$ " . number_format($totalEntradas, 2, ',', '.') . "</h1>";
+                    } else {
+                        echo 'Erro ao buscar o valor total das entradas.';
+                    }
+                } catch (PDOException $e) {
+                    echo 'Erro no banco de dados: ' . $e->getMessage();
+                }
+                ?>
             </div>
 
             <div class="large-c-2">
-            <div class="main-text-grey">
+                <div class="main-text-grey">
                     <h1 class="text-r">Saída:</h1>
                 </div>
                 <?php
-require_once('evento/conexao.php');
-$database = new Database();
-$db = $database->conectar();
+                require_once('evento/conexao.php');
+                $database = new Database();
+                $db = $database->conectar();
 
-$query = "SELECT SUM(valor_saida) AS total_saida FROM saida";
-$stmt = $db->prepare($query);
+                $query = "SELECT SUM(valor_saida) AS total_saida FROM saida";
+                $stmt = $db->prepare($query);
 
-try {
-    if ($stmt->execute()) {
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $totalEntradas = $result['total_saida'];
-            echo "<h1 class='text-r mmm'>R$ " . number_format($totalEntradas, 2, ',', '.') . "</h1>";   
- } else {
-        echo 'Erro ao buscar o valor total das saida.';
-    }
-} catch (PDOException $e) {
-    echo 'Erro no banco de dados: ' . $e->getMessage();
-}
-?>
+                try {
+                    if ($stmt->execute()) {
+                        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                        $totalEntradas = $result['total_saida'];
+                        echo "<h1 class='text-r mmm'>R$ " . number_format($totalEntradas, 2, ',', '.') . "</h1>";
+                    } else {
+                        echo 'Erro ao buscar o valor total das saida.';
+                    }
+                } catch (PDOException $e) {
+                    echo 'Erro no banco de dados: ' . $e->getMessage();
+                }
+                ?>
             </div>
 
             <div class="large-c-2">
-            <div class="main-text-grey">
+                <div class="main-text-grey">
                     <h1 class="text-lu">Lucro Bruto:</h1>
                 </div>
             </div>
@@ -115,8 +145,8 @@ try {
         </div>
 
         <div class="but-l">
-        <a href="evento/adicionar_entrada.php" class="but-v">Adicionar Entradas</a>
-        <a href="evento/adicionar_saida.php" class="but-red">Adicionar Saidas</a>
+            <a href="evento/adicionar_entrada.php" class="but-v">Adicionar Entradas</a>
+            <a href="evento/adicionar_saida.php" class="but-red">Adicionar Saidas</a>
 
         </div>
 
