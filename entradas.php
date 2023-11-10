@@ -88,8 +88,8 @@ $entradas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <td><?php echo $entrada['valor_entrada']; ?></td>
                             <td><?php echo $entrada['data_entrada']; ?></td>
                             <td><?php echo $entrada['motivo_entrada']; ?></td>
-                            <td><?php echo $entrada['descricao']; ?></td>
-                            <td><?php echo $entrada['metodo_pagamento']; ?></td>
+                            <td class="descricao-cell"><?php echo nl2br($entrada['descricao']); ?></td>
+                            <td><?php echo $entrada['metodo_pagamento'];?></td>
                             <td>
                                 <a href="evento/excluir_entrada.php?id=<?php echo $entrada['id']; ?>" onclick="return confirm('Tem certeza que deseja excluir a entrada?')">Excluir Entrada</a>
                             </td>
