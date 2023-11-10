@@ -132,13 +132,32 @@ $db = $database->conectar();
                 <div class="main-text-grey">
                     <h1 class="text-lu">Lucro Bruto:</h1>
                 </div>
+                <?php
+    require_once('evento/conexao.php');
+    $database = new Database();
+    $db = $database->conectar();
+
+    $query = "SELECT SUM(valor_saida) AS total_saida FROM saida";
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    $total_saidas = $stmt->fetch(PDO::FETCH_ASSOC)['total_saida'];
+
+    $query = "SELECT SUM(valor_entrada) AS total_entradas FROM entrada";
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    $total_entradas = $stmt->fetch(PDO::FETCH_ASSOC)['total_entradas'];
+
+    $caixaTotal = $total_entradas + $total_saidas; 
+
+    echo "<h1 class='text-lu mmm'>R$ " . number_format($caixaTotal, 2, ',', '.') . "</h1>";
+    ?>
             </div>
 
         </div>
 
 
         <div class="but-r">
-            <a href="#" class="but-v">Ver Entradas</a>
+            <a href="entradas.php" class="but-v">Ver Entradas</a>
             <a href="#" class="but-red">Ver Saidas</a>
             <a href="#" class="but-lu">Ver Lucros</a>
 
