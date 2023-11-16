@@ -1,0 +1,15 @@
+{
+    "name": "jlloca/jlloca",
+    "description": "composer for loca",
+    "type": "project",
+    "require": {
+        "phpoffice/phpspreadsheet": "dev-master"
+    },
+    "license": "mit",
+    "authors": [
+        {
+            "name": "y"
+        }
+    ],
+    "minimum-stability": "dev"
+}
